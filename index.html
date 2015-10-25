@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Build your Fantasy Premier League football team</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Build your Fantasy Premier League football team">
+  <meta name="author" content="Raghavendran Partha">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Build your Fantasy Premier League football team</h1>
+    <h2>Developing Data Products</h2>
+    <p>Raghavendran Partha<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Fantasy Premier League</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li><p>Based on the Barclays Premier League/English Premier League (EPL)</p></li>
+<li><p>Over 3.5 million fantasy managers/users every season</p></li>
+<li><p>Each manager is given a fixed amount of money (100 million pounds) to build a squad consisting of</p>
+
+<p>a. 2 Goalkeepers<br>
+ b. 5 Defenders<br>
+ c. 5 Midfielders<br>
+ d. 3 Forwards</p>
+
+<p>with a maximum of 3 players from a single EPL team</p></li>
+<li><p>Winner at the end of the season gets to take home 25,000 pounds</p></li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Basics of the game</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>In each gameweek the fantasy football players will earn points based on their performance in the Barclays Premier League</li>
+<li>Additional rules that allow managers to transfer players in and out of their team every week</li>
+<li>Objective of a manager is thus to create a team that scores the highest points over the course of the season</li>
+</ol>
+
+<p>Sample Player data: (available for free at <a href="http://fantasy.premierleague.com/stats/elements/">http://fantasy.premierleague.com/stats/elements/</a>)</p>
+
+<table><thead>
+<tr>
+<th align="left">Player</th>
+<th align="left">Team</th>
+<th align="left">Pos</th>
+<th align="left">Price</th>
+<th align="left">Total</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="left">Payet</td>
+<td align="left">WHU</td>
+<td align="left">MID</td>
+<td align="left">£8.2</td>
+<td align="left">71</td>
+</tr>
+<tr>
+<td align="left">Mahrez</td>
+<td align="left">LEI</td>
+<td align="left">MID</td>
+<td align="left">£6.5</td>
+<td align="left">70</td>
+</tr>
+<tr>
+<td align="left">Vardy</td>
+<td align="left">LEI</td>
+<td align="left">FWD</td>
+<td align="left">£7.1</td>
+<td align="left">70</td>
+</tr>
+<tr>
+<td align="left">Sánchez</td>
+<td align="left">ARS</td>
+<td align="left">MID</td>
+<td align="left">£11.5</td>
+<td align="left">65</td>
+</tr>
+<tr>
+<td align="left">Ayew</td>
+<td align="left">SWA</td>
+<td align="left">MID</td>
+<td align="left">£7.2</td>
+<td align="left">57</td>
+</tr>
+<tr>
+<td align="left">Myhill</td>
+<td align="left">WBA</td>
+<td align="left">GKP</td>
+<td align="left">£4.7</td>
+<td align="left">57</td>
+</tr>
+<tr>
+<td align="left">Pellè</td>
+<td align="left">SOU</td>
+<td align="left">FWD</td>
+<td align="left">£8.4</td>
+<td align="left">56</td>
+</tr>
+</tbody></table>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Choosing the initial squad</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><p>Objective: Select 15 players from a pool of 700</p></li>
+<li><p>Current season underway with 8 of the 38 gameweeks completed</p></li>
+<li><p>Constraint-based optimization problem: Select players who have scored the highest points in aggregate over the past gameweeks subject to the following constraints</p>
+
+<ul>
+<li>There are exactly 2 goalkeepers<br></li>
+<li>There are exactly 5 defenders<br></li>
+<li>There are exactly 5 midfielders<br></li>
+<li>There are exactly 3 forwards<br></li>
+<li>There are no more than 3 players belonging to the same EPL team<br></li>
+<li>Their combined cost is at most 100 million pounds</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Linear Programming Solution to the problem</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><p>Implemented using lpSolveAPI package in R</p></li>
+<li><p>Optimization over 26 variables associated with each player: </p>
+
+<ul>
+<li>Total Points scored by the player (Pts)<br></li>
+<li>Price of the player (Cost)<br></li>
+<li>Value of 0 or 1 for the 4 different positions: if the player belongs to a position, that value is set to 1, and rest are 0<br></li>
+<li>Value 0 or 1 for the 20 different teams: if the player belongs to a team, that value is set to 1, and rest are 0<br></li>
+</ul></li>
+<li><p>The optimization problem tries to maximize sum of Pts for 15 players under the condition that the </p>
+
+<ul>
+<li>Sum of the variable Cost is at most 100</li>
+<li>Sum of the position variables is equal to the desired number of players in each position</li>
+<li>Sum of each of the team variables is at most 3 </li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Fantasy Premier League'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Basics of the game'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Choosing the initial squad'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Linear Programming Solution to the problem'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>

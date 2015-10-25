@@ -1,0 +1,8 @@
+base
+dplyr
+data.table
+XML
+httr
+gridExtra
+knitr
+R2HTML
